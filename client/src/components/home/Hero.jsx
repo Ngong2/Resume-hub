@@ -7,13 +7,13 @@ const Hero = () => {
   const {user} = useSelector(state=>state.auth);
     const [menuOpen, setMenuOpen] = React.useState(false);
 
-    const logos = [
-        'https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg',
-        'https://saasly.prebuiltui.com/assets/companies-logo/framer.svg',
-        'https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg',
-        'https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg',
-        'https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg',
-    ]
+  const logos = [
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/framer.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoft.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/huawei.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/walmart.svg',
+];
 
   return (
     <>
@@ -32,17 +32,34 @@ const Hero = () => {
                         <a href="#cta" className="hover:text-indigo-600 transition">Contact</a>
                     </div>
 
-                    <div className="flex gap-2">
-                        <Link to="/app?state=register" className="hidden md:block px-6 py-2 bg-indigo-500 hover:bg-indigo-700 active:scale-95 transition-all rounded-full text-white" hidden={user}>
-                            Get started
-                        </Link>
-                        <Link to="/app?state=login" className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" hidden={user}>
-                            Login
-                        </Link>
-                        <Link to="/app" className="hidden md:block px-8 py-2 bg-blue-500  hover:bg-blue-600 active:scale-95 transition-all rounded-full text-white" hidden={!user}>
-                            Dashboard
-                        </Link>
-                    </div>
+<div className="flex gap-2">
+  {!user && (
+    <>
+      <Link
+        to="/app?state=register"
+        className="hidden md:block px-6 py-2 bg-indigo-500 hover:bg-indigo-700 active:scale-95 transition-all rounded-full text-white"
+      >
+        Get started
+      </Link>
+      <Link
+        to="/app?state=login"
+        className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900"
+      >
+        Login
+      </Link>
+    </>
+  )}
+
+  {user && (
+    <Link
+      to="/app"
+      className="hidden md:block px-8 py-2 bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all rounded-full text-white"
+    >
+      Dashboard
+    </Link>
+  )}
+</div>
+
 
                     <button onClick={() => setMenuOpen(true)} className="md:hidden active:scale-90 transition" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" className="lucide lucide-menu" >
